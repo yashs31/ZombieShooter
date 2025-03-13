@@ -44,7 +44,10 @@ public class Hero : MonoBehaviour
 
     private void Fire(InputAction.CallbackContext context)
     {
-        Debug.Log("Fired");
+        if (_currentWeapon.AttemptFire())
+        {
+
+        }
     }
 
     #endregion

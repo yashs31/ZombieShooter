@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BigZombie
   m_EditorClassIdentifier: 
   _health: 100
-  _moveSpeed: 5
+  _moveSpeed: 0.5
   _damage: 10

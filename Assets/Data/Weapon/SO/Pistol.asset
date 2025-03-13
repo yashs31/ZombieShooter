@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0284d552101b3394bab81aa17b0d5bf7, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
+  Type: 0
   _magazineSize: 10
   _reloadTime: 0.5
-  _fireRate: 1
-  _bulletSpeed: 20
+  _fireRate: 0.5
+  _bulletSpeed: 7

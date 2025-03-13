@@ -15,5 +15,5 @@ MonoBehaviour:
   Type: 1
   _magazineSize: 50
   _reloadTime: 2
-  _fireRate: 1
-  _bulletSpeed: 15
+  _fireRate: 0.3
+  _bulletSpeed: 12
