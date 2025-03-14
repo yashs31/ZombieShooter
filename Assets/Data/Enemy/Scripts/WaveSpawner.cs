@@ -5,6 +5,7 @@ public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] private List<Enemy> _enemies = new List<Enemy>();
     [Tooltip("This * wave number of enemies will spawn in the wave")]
+    [SerializeField] int _maxWaves;
     [SerializeField] private int _waveEnemyMultiplier;
     private int _currentWave;
     private List<GameObject> _enemiesToSpawn = new List<GameObject>();
@@ -17,8 +18,10 @@ public class WaveSpawner : MonoBehaviour
     private float _timeBetweenEachEnemySpawn;
     private float _timeToSpawnNewEnemy;
     private int _maxEnemiesInWave;
+    private bool _isEnd;
     void Start()
     {
+        _isEnd = false;
         Events.EnemyDead += RemoveFromSpawnedEnemies;
         _currentWave = 1;
         UpdateWaveHUD();
@@ -32,6 +35,8 @@ public class WaveSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_isEnd)
+            return;
         if (_timeToSpawnNewEnemy < 0)
         {
             if (_enemiesToSpawn.Count > 0)
@@ -59,9 +64,18 @@ public class WaveSpawner : MonoBehaviour
         if (_maxWaveTimer <= 0 && _spawnedEnemies.Count <= 0)
         {
             _currentWave++;
-            GenerateWave();
-            UpdateZombieHUD();
-            UpdateWaveHUD();
+            if (_currentWave > _maxWaves)
+            {
+                _isEnd = true;
+                Events.GameEnd?.Invoke();
+            }
+            else
+            {
+                GenerateWave();
+                UpdateZombieHUD();
+                UpdateWaveHUD();
+            }
+
         }
     }
 

@@ -45,13 +45,13 @@ public class WeaponBase : MonoBehaviour
         UpdateAmmoHUD();
     }
 
-    public bool AttemptFire()
+    public bool AttemptFire(bool direction)
     {
         if (_isReloading || !_canFire || _currentAmmo <= 0)
             return false;
 
         StartCoroutine(FireCooldown());
-        Shoot();
+        Shoot(direction);
         return true;
     }
 
@@ -62,7 +62,7 @@ public class WeaponBase : MonoBehaviour
         _canFire = true;
     }
 
-    private void Shoot()
+    private void Shoot(bool isFacingRight)
     {
         _currentAmmo--;
         // Instantiate Bullet
@@ -73,8 +73,13 @@ public class WeaponBase : MonoBehaviour
             Debug.Log("Pool size not enough");
             return;
         }
+        float _direction = 1;
+        if (isFacingRight)
+            _direction = 1;
+        else
+            _direction = -1;
         bullet.transform.position = _firePoint.transform.position;
-        bullet.RigidBody2D.velocity = _firePoint.right * _bulletSpeed;
+        bullet.RigidBody2D.velocity = _firePoint.right * _bulletSpeed * _direction;
 
         if (_currentAmmo <= 0)
         {

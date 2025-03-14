@@ -9,4 +9,6 @@ public static class Events
     public static Action<int> UpdateWaveCount;
     public static Action<int, int> UpdateAmmoCount;
     public static Action<bool> ReloadToggled;
+    public static Action GameEnd;
+    public static Action<float> UpdateHealthUI;
 }

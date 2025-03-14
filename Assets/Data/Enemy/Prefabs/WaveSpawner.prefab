@@ -50,7 +50,8 @@ MonoBehaviour:
     cost: 1
   - _enemyPrefab: {fileID: 475789850448206770, guid: b23ac8a3183e6ff40bfe36db2694d1ba, type: 3}
     cost: 2
-  _waveEnemyMultiplier: 2
+  _maxWaves: 3
+  _waveEnemyMultiplier: 4
   _spawnLocation: {fileID: 7878798240543997182}
   _maxWaveDuration: 20
 --- !u!1 &7235114060074829936

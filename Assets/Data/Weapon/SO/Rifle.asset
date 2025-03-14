@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rifle
   m_EditorClassIdentifier: 
   Type: 2
-  _magazineSize: 100
+  _magazineSize: 42
   _reloadTime: 1.5
-  _fireRate: 0.5
+  _fireRate: 0.08
   _bulletSpeed: 10

@@ -24,3 +24,8 @@ public enum WeaponType
     SMG = 1,
     RIFLE = 2
 }
+
+public enum WeaponStat
+{
+    MAG, RELOAD, FRATE, SPEED
+}

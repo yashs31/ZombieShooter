@@ -7,18 +7,24 @@ public class WeaponHUD : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _ammoText;
     [SerializeField] Image _imageToReload;
+    [SerializeField] Image _gunImage;
     [SerializeField] private float _flickerSpeed = 1.5f; // Speed of flickering
+    [SerializeField] ProgressBar _healthBar;
     private bool _isFlickering = false;
     void Start()
     {
         Events.UpdateAmmoCount += UpdateAmmo;
         Events.ReloadToggled += ReloadStatus;
+        Events.UpdateHealthUI += UpdateHealth;
+        int currentWeapon = GameManager.Instance.CurrentWeaponID;
+        _gunImage.sprite = GameManager.Instance.WeaponDB.GetWeaponByID(currentWeapon).Sprite;
     }
 
     private void OnDisable()
     {
         Events.UpdateAmmoCount -= UpdateAmmo;
         Events.ReloadToggled -= ReloadStatus;
+        Events.UpdateHealthUI -= UpdateHealth;
     }
     // Update is called once per frame
     void Update()
@@ -30,7 +36,10 @@ public class WeaponHUD : MonoBehaviour
     {
         _ammoText.text = current + " / " + max;
     }
-
+    private void UpdateHealth(float current)
+    {
+        _healthBar.ChangeUIValue(current);
+    }
     private void ReloadStatus(bool reloading)
     {
         if (reloading)

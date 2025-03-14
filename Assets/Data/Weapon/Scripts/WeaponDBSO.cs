@@ -7,6 +7,7 @@ public class WeaponDBSO : ScriptableObject
     [SerializeField] private List<WeaponDetails> _weapons;
 
     #region GETTERS
+    public List<WeaponDetails> Weapons => _weapons;
     public WeaponDetails GetWeaponDetails(WeaponType typeOfWeapon)
     {
         WeaponDetails currentWeapon = _weapons.Find(x => x.WeaponType == typeOfWeapon);
@@ -35,10 +36,15 @@ public class WeaponDBSO : ScriptableObject
 public class WeaponDetails
 {
     [SerializeField] int _id;
+    [SerializeField] protected Sprite _displaySprite;
     [SerializeField] WeaponType _weaponType;
     [SerializeField] GameObject _weaponPrefab;
+    [SerializeField] WeaponStatsSO _statSO;
 
     public int ID => _id;
     public WeaponType WeaponType => _weaponType;
     public GameObject WeaponPrefab => _weaponPrefab;
+    public WeaponStatsSO Stats => _statSO;
+    public Sprite Sprite => _displaySprite;
+
 }

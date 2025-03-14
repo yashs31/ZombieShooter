@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     }
 
     #region GETTERS
+    public WeaponDBSO WeaponDB => _weaponDB;
     public PlayerControls PlayerControls => _playerControls;
     public Hero Player => _player;
     public int CurrentWeaponID => _currentWeaponID;

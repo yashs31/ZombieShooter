@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   Type: 0
-  _magazineSize: 10
+  _magazineSize: 7
   _reloadTime: 1
-  _fireRate: 0.5
+  _fireRate: 0.2
   _bulletSpeed: 7

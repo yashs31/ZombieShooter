@@ -14,11 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weapons:
   - _id: 1
+    _displaySprite: {fileID: 21300000, guid: 1f8934c21d0cb18419f788a463d77b5d, type: 3}
     _weaponType: 0
     _weaponPrefab: {fileID: 273563807143930595, guid: 20064f8ff5585fd4db0b025e730c48cd, type: 3}
+    _statSO: {fileID: 11400000, guid: 206df71d37e4cf4438092076e3a93806, type: 2}
   - _id: 2
+    _displaySprite: {fileID: 21300000, guid: 5331d3ef704e31f4991c2db49a49390a, type: 3}
     _weaponType: 1
     _weaponPrefab: {fileID: 3352995816738218236, guid: 87adc93c8995046428f351e4bc968004, type: 3}
+    _statSO: {fileID: 11400000, guid: 9d1264f7bef097144bc5ee0cb1418fb7, type: 2}
   - _id: 3
+    _displaySprite: {fileID: 21300000, guid: 9411272ddaed09a48bc25ddac0a6c56d, type: 3}
     _weaponType: 2
     _weaponPrefab: {fileID: 7747183052181857566, guid: 44520117f0998bf4ea3c44f1cd452d95, type: 3}
+    _statSO: {fileID: 11400000, guid: fa4ab1476443cca4ba9a77abe4c9912c, type: 2}
