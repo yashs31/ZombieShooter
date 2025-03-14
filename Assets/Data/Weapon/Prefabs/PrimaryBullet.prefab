@@ -102,7 +102,7 @@ MonoBehaviour:
   _layersToDamage:
     serializedVersion: 2
     m_Bits: 512
-  _bulletDamage: 2
+  _bulletDamage: 10
 --- !u!58 &7041219901243722565
 CircleCollider2D:
   m_ObjectHideFlags: 0

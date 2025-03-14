@@ -1,14 +1,18 @@
 public class BigZombie : EnemyBase
 {
     // Start is called before the first frame update
-    void Start()
+    protected override void Awake()
     {
-        RigidBody2D.velocity = -transform.right * _statsSO.MoveSpeed;
+        base.Awake();
+    }
+    protected override void Start()
+    {
+        base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-
+        base.Update();
     }
 }

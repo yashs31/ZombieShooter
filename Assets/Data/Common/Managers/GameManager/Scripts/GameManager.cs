@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -8,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private WeaponDBSO _weaponDB;
     private int _currentWeaponID;
     private Hero _player;
-
+    public Action<float, EnemyBase> BulletHit;
     private void Awake()
     {
         _currentWeaponID = 1;

@@ -1,12 +1,10 @@
 using UnityEngine;
 public class PrimaryBullet : BulletBase
 {
-    // Start is called before the first frame update
     private int _enemyLayer;
     private void Awake()
     {
         _enemyLayer = LayerMask.NameToLayer(ENEMY_LAYER);
-        Initialize();
     }
     void Start()
     {
@@ -22,7 +20,9 @@ public class PrimaryBullet : BulletBase
     {
         if (collision.gameObject.layer == _enemyLayer)
         {
-            Debug.Log("EnemyHit");
+            GameManager.Instance.BulletHit.Invoke(_bulletDamage, collision.GetComponent<EnemyBase>());
+            this.gameObject.SetActive(false);
         }
     }
+
 }

@@ -1,10 +1,14 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponBase : MonoBehaviour
 {
+    [Header("CONFIG")]
     [SerializeField] protected WeaponStatsSO _weaponStats;
     [SerializeField] protected Transform _firePoint;
+    [SerializeField] private int _poolSize;
+
     [SerializeField] protected BulletBase _bulletPrefab;
     protected int _magazineSize;
     protected float _reloadTime;
@@ -14,8 +18,18 @@ public class WeaponBase : MonoBehaviour
     private bool _canFire;
     private int _currentAmmo;
 
-    #region GETTERS
-    #endregion
+    private List<BulletBase> _inActiveBullets = new List<BulletBase>();
+    private void Awake()
+    {
+        for (int i = 0; i < _poolSize; i++)
+        {
+            BulletBase bullet = Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+            bullet.Initialize(this);
+            bullet.gameObject.SetActive(false);
+            _inActiveBullets.Add(bullet);
+        }
+    }
+
 
     public virtual void Init()
     {
@@ -51,7 +65,13 @@ public class WeaponBase : MonoBehaviour
         _currentAmmo--;
         // Instantiate Bullet
 
-        BulletBase bullet = Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+        BulletBase bullet = GetPooledBullet();
+        if (bullet == null)
+        {
+            Debug.Log("Pool size not enough");
+            return;
+        }
+        bullet.transform.position = _firePoint.transform.position;
         bullet.RigidBody2D.velocity = _firePoint.right * _bulletSpeed;
 
         if (_currentAmmo <= 0)
@@ -67,5 +87,22 @@ public class WeaponBase : MonoBehaviour
         _currentAmmo = _magazineSize;
         _isReloading = false;
     }
+
+    #region GETTERS
+
+    private BulletBase GetPooledBullet()
+    {
+        foreach (BulletBase bullet in _inActiveBullets)
+        {
+            if (!bullet.gameObject.activeInHierarchy)
+            {
+                bullet.gameObject.SetActive(true);
+                return bullet;
+            }
+        }
+        return null;
+
+    }
+    #endregion
 }
 

@@ -248,4 +248,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponStats: {fileID: 11400000, guid: fa4ab1476443cca4ba9a77abe4c9912c, type: 2}
   _firePoint: {fileID: 3209410912563125616}
-  _bulletPrefab: {fileID: 5240192712909373515, guid: ac36826e401c08540bf1ddc5aee099f4, type: 3}
+  _poolSize: 50
+  _bulletPrefab: {fileID: 31591552594383180, guid: ac36826e401c08540bf1ddc5aee099f4, type: 3}

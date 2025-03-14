@@ -1,28 +1,26 @@
-public class LittleZombie : EnemyBase, IUnitAnimations
+public class LittleZombie : EnemyBase
 {
-    void Start()
+    protected override void Awake()
     {
-        RigidBody2D.velocity = -transform.right * _statsSO.MoveSpeed;
+        base.Awake();
+    }
+    protected override void Start()
+    {
+        base.Start();
+
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-
+        base.Update();
     }
 
-    public void Die()
+    private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
     {
-        throw new System.NotImplementedException();
-    }
-
-    public void Hurt()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Move()
-    {
-        throw new System.NotImplementedException();
+        if (collision.gameObject.layer == _enemyLayer)
+        {
+            SwitchState(_hurtState);
+        }
     }
 }
