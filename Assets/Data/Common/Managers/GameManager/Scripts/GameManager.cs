@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,7 +8,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private WeaponDBSO _weaponDB;
     private int _currentWeaponID;
     private Hero _player;
-    public Action<float, EnemyBase> BulletHit;
     private void Awake()
     {
         _currentWeaponID = 1;
@@ -55,6 +53,22 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    public void TogglePause()
+    {
+        if (Time.timeScale == 0)
+            ResumeGame();
+        else
+            PauseGame();
+    }
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
     #region SETTERS
     public void SetPlayer(Hero hero) => _player = hero;
     public void SetCurrentWeaponID(int id) => _currentWeaponID = id;

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 2
   _magazineSize: 100
-  _reloadTime: 3
+  _reloadTime: 1.5
   _fireRate: 0.5
   _bulletSpeed: 10

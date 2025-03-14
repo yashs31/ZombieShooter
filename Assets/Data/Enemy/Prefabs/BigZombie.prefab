@@ -114,6 +114,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _statsSO: {fileID: 11400000, guid: 7336ac6925147e544897dba8b00db50d, type: 2}
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   _animator: {fileID: 7549856892046342394}
   _runAttackStartDistance: 2
   _standAttackRange: 2
@@ -150,7 +153,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0775671, y: 0.27273607}
+  m_Offset: {x: 0.0775671, y: 0.64}
   m_Size: {x: 1.1555672, y: 2.546338}
   m_Direction: 0
 --- !u!50 &2212301939226204010
@@ -656,7 +659,7 @@ Transform:
   m_GameObject: {fileID: 2673848614698591947}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.39, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1618,7 +1621,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5492924934171154334, guid: a1a09409ac382f545b2ac8ee151f68ea, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.755
+      value: 2.28
       objectReference: {fileID: 0}
     - target: {fileID: 5492924934171154334, guid: a1a09409ac382f545b2ac8ee151f68ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

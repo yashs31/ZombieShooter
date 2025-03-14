@@ -9,7 +9,10 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] protected Transform _firePoint;
     [SerializeField] private int _poolSize;
 
+    [Header("PREFABS")]
     [SerializeField] protected BulletBase _bulletPrefab;
+
+    //local vars
     protected int _magazineSize;
     protected float _reloadTime;
     protected float _fireRate;
@@ -17,7 +20,6 @@ public class WeaponBase : MonoBehaviour
     private bool _isReloading;
     private bool _canFire;
     private int _currentAmmo;
-
     private List<BulletBase> _inActiveBullets = new List<BulletBase>();
     private void Awake()
     {
@@ -33,7 +35,6 @@ public class WeaponBase : MonoBehaviour
 
     public virtual void Init()
     {
-
         _magazineSize = _weaponStats.MagazineSize;
         _reloadTime = _weaponStats.ReloadTime;
         _fireRate = _weaponStats.FireRate;
@@ -41,6 +42,7 @@ public class WeaponBase : MonoBehaviour
 
         _currentAmmo = _magazineSize;
         _canFire = true;
+        UpdateAmmoHUD();
     }
 
     public bool AttemptFire()
@@ -64,7 +66,7 @@ public class WeaponBase : MonoBehaviour
     {
         _currentAmmo--;
         // Instantiate Bullet
-
+        UpdateAmmoHUD();
         BulletBase bullet = GetPooledBullet();
         if (bullet == null)
         {
@@ -83,9 +85,17 @@ public class WeaponBase : MonoBehaviour
     private IEnumerator Reload()
     {
         _isReloading = true;
+        ToggleReloadUI();
         yield return new WaitForSeconds(_reloadTime);
         _currentAmmo = _magazineSize;
         _isReloading = false;
+        UpdateAmmoHUD();
+        ToggleReloadUI();
+    }
+
+    private void ToggleReloadUI()
+    {
+        Events.ReloadToggled?.Invoke(_isReloading);
     }
 
     #region GETTERS
@@ -102,6 +112,11 @@ public class WeaponBase : MonoBehaviour
         }
         return null;
 
+    }
+
+    private void UpdateAmmoHUD()
+    {
+        Events.UpdateAmmoCount?.Invoke(_currentAmmo, _magazineSize);
     }
     #endregion
 }

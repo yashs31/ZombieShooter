@@ -20,7 +20,7 @@ public class PrimaryBullet : BulletBase
     {
         if (collision.gameObject.layer == _enemyLayer)
         {
-            GameManager.Instance.BulletHit.Invoke(_bulletDamage, collision.GetComponent<EnemyBase>());
+            Events.BulletHit.Invoke(_bulletDamage, collision.GetComponent<EnemyBase>());
             this.gameObject.SetActive(false);
         }
     }

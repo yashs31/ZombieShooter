@@ -1,10 +1,20 @@
 using UnityEngine;
 
-public class BaseUnit
+public abstract class BaseUnit : MonoBehaviour
 {
-    [SerializeField] private UnitStatsSO _unitStats;
 
-    #region GETTERS
-    public UnitStatsSO UnitStats => _unitStats;
-    #endregion
+    protected virtual void Awake()
+    {
+    }
+    protected virtual void Start()
+    {
+
+    }
+    protected virtual void Update()
+    {
+
+    }
+
+
+
 }
