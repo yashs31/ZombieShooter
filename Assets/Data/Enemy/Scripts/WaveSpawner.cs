@@ -21,6 +21,7 @@ public class WaveSpawner : MonoBehaviour
     private bool _isEnd;
     void Start()
     {
+        GameManager.Instance.ResumeGame();
         _isEnd = false;
         Events.EnemyDead += RemoveFromSpawnedEnemies;
         _currentWave = 1;
@@ -54,8 +55,8 @@ public class WaveSpawner : MonoBehaviour
         }
         else
         {
-            _timeToSpawnNewEnemy -= Time.fixedDeltaTime;
-            _maxWaveTimer -= Time.fixedDeltaTime;
+            _timeToSpawnNewEnemy -= Time.deltaTime;
+            _maxWaveTimer -= Time.deltaTime;
             UpdateZombieHUD();
         }
         //_max wave timer helps to keep the waves from ending abruptly
@@ -72,10 +73,9 @@ public class WaveSpawner : MonoBehaviour
             else
             {
                 GenerateWave();
-                UpdateZombieHUD();
-                UpdateWaveHUD();
             }
-
+            UpdateZombieHUD();
+            UpdateWaveHUD();
         }
     }
 

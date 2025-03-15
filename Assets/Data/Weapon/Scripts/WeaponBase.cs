@@ -20,6 +20,7 @@ public class WeaponBase : MonoBehaviour
     private bool _isReloading;
     private bool _canFire;
     private int _currentAmmo;
+    private float _bulletDamage;
     private List<BulletBase> _inActiveBullets = new List<BulletBase>();
     private void Awake()
     {
@@ -39,7 +40,7 @@ public class WeaponBase : MonoBehaviour
         _reloadTime = _weaponStats.ReloadTime;
         _fireRate = _weaponStats.FireRate;
         _bulletSpeed = _weaponStats.BulletSpeed;
-
+        _bulletDamage = _weaponStats.BulletDamage;
         _currentAmmo = _magazineSize;
         _canFire = true;
         UpdateAmmoHUD();
@@ -49,10 +50,16 @@ public class WeaponBase : MonoBehaviour
     {
         if (_isReloading || !_canFire || _currentAmmo <= 0)
             return false;
-
-        StartCoroutine(FireCooldown());
-        Shoot(direction);
-        return true;
+        try
+        {
+            StartCoroutine(FireCooldown());
+            Shoot(direction);
+            return true;
+        }
+        catch (System.Exception ex)
+        {
+            return false;
+        }
     }
 
     private IEnumerator FireCooldown()
@@ -73,6 +80,7 @@ public class WeaponBase : MonoBehaviour
             Debug.Log("Pool size not enough");
             return;
         }
+        bullet.Initialize(_bulletDamage);
         float _direction = 1;
         if (isFacingRight)
             _direction = 1;

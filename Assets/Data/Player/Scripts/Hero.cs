@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class Hero : MonoBehaviour
@@ -10,6 +11,7 @@ public class Hero : MonoBehaviour
 
     private float _horizontal;
     private bool _isFacingRight;
+    private bool _isDead;
     //local vars
     private PlayerControls _controls;
     private WeaponBase _currentWeapon;
@@ -25,6 +27,7 @@ public class Hero : MonoBehaviour
     public HeroWalkState _walkState = new HeroWalkState();
     private void Awake()
     {
+        _isDead = false;
         _controls = InputManager.Instance.Controls;
         _currentHealth = _unitStats.Health;
         RigidBody = GetComponent<Rigidbody2D>();
@@ -54,7 +57,13 @@ public class Hero : MonoBehaviour
 
     private void Update()
     {
+        if (_isDead)
+            return;
         RigidBody.velocity = new Vector2(_horizontal * _unitStats.MoveSpeed, 0);
+        if (_currentState != null)
+        {
+            _currentState.UpdateState(this);
+        }
     }
     #region Input Actions
     private void AssignInputActions()
@@ -94,6 +103,8 @@ public class Hero : MonoBehaviour
     }
     private void Fire(InputAction.CallbackContext context)
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
         Debug.Log("IsFiring");
         if (_currentWeapon.AttemptFire(_isFacingRight))
         {
@@ -106,16 +117,20 @@ public class Hero : MonoBehaviour
     #region STATE MACHINE
     public void SwitchState(HeroBaseState newState)
     {
-        if (_currentState == _deathState)
+        if (_isDead || newState == null)
+        {
+            _currentState = newState;
             return;
+        }
         if (_currentState == newState) return;
-
         _currentState.ExitState(this);
         _currentState = newState;
         _currentState.EnterState(this);
     }
 
     #region GETTERS
+
+    public bool IsDead => _isDead;
     public Animator Animator => _animator;
     public UnitStatsSO UnitStats => _unitStats;
     public WeaponBase Weapon => _currentWeapon;
@@ -129,11 +144,14 @@ public class Hero : MonoBehaviour
         _currentHealth -= damage;
         if (_currentHealth <= 0)
         {
-            Events.GameEnd?.Invoke();
+            SwitchState(_deathState);
         }
         Events.UpdateHealthUI?.Invoke(_currentHealth);
+    }
 
-
+    public void PostDeath()
+    {
+        _isDead = true;
     }
     #endregion
 }

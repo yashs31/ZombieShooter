@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class BulletBase : MonoBehaviour
 {
     protected const string ENEMY_LAYER = "Enemy";
+    protected const string BOUNDARY_LAYER = "Bounds";
 
     [Header("CONGIF")]
     [SerializeField] LayerMask _layersToDamage;
@@ -23,5 +24,12 @@ public abstract class BulletBase : MonoBehaviour
     #region GETTERS
     public float Damage => _bulletDamage;
     public LayerMask LayersToDamage => _layersToDamage;
+    #endregion
+
+    #region SETTERS
+    public void Initialize(float damage)
+    {
+        _bulletDamage = damage;
+    }
     #endregion
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb7456c2f7fdec4a9fa5df55ce0d559, type: 3}
   m_Name: LittleZombie
   m_EditorClassIdentifier: 
-  _health: 50
-  _moveSpeed: 1
+  _health: 25
+  _moveSpeed: 1.5
   _meleeCooldown: 1
   _damage: 5

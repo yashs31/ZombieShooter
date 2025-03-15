@@ -33,6 +33,10 @@ public class EndGameUI : MonoBehaviour
 
     }
 
+    private void OnDisable()
+    {
+        Events.GameEnd -= OpenPanel;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -41,7 +45,6 @@ public class EndGameUI : MonoBehaviour
 
     private void RestartScene()
     {
-        GameManager.Instance.ResumeGame();
         SceneManager.LoadScene("GameScene");
     }
     private void LoadMenu()

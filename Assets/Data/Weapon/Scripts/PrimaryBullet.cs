@@ -2,9 +2,11 @@ using UnityEngine;
 public class PrimaryBullet : BulletBase
 {
     private int _enemyLayer;
+    private int _boundaryLayer;
     private void Awake()
     {
         _enemyLayer = LayerMask.NameToLayer(ENEMY_LAYER);
+        _boundaryLayer = LayerMask.NameToLayer(BOUNDARY_LAYER);
     }
     void Start()
     {
@@ -21,6 +23,10 @@ public class PrimaryBullet : BulletBase
         if (collision.gameObject.layer == _enemyLayer)
         {
             Events.BulletHit.Invoke(_bulletDamage, collision.GetComponent<EnemyBase>());
+            this.gameObject.SetActive(false);
+        }
+        if (collision.gameObject.layer == _boundaryLayer)
+        {
             this.gameObject.SetActive(false);
         }
     }

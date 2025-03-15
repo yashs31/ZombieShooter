@@ -8,12 +8,14 @@ public class WeaponStatsSO : ScriptableObject
     [SerializeField] protected float _reloadTime = 0;
     [SerializeField] protected float _fireRate = 0;
     [SerializeField] protected float _bulletSpeed = 0;
+    [SerializeField] protected float _bulletDamage = 0;
 
     #region GETTERS
     public int MagazineSize => _magazineSize;
     public float ReloadTime => _reloadTime;
     public float FireRate => _fireRate;
     public float BulletSpeed => _bulletSpeed;
+    public float BulletDamage => _bulletDamage;
     public WeaponType WeaponType => Type;
     #endregion
 }

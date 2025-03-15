@@ -23,6 +23,6 @@ public class LevelProgressHUD : MonoBehaviour
     }
     private void UpdateWaveCount(int currentWave)
     {
-        _zombieText.text = "Wave " + currentWave;
+        _waveText.text = "Wave " + currentWave;
     }
 }

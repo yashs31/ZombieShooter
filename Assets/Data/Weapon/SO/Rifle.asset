@@ -17,3 +17,4 @@ MonoBehaviour:
   _reloadTime: 1.5
   _fireRate: 0.08
   _bulletSpeed: 10
+  _bulletDamage: 10
