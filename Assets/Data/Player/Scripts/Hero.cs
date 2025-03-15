@@ -105,7 +105,6 @@ public class Hero : MonoBehaviour
     {
         if (EventSystem.current.IsPointerOverGameObject())
             return;
-        Debug.Log("IsFiring");
         if (_currentWeapon.AttemptFire(_isFacingRight))
         {
 

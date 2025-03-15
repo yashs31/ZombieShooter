@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PauseUI : MonoBehaviour
+public class PauseUI : UIBase
 {
     [SerializeField] Button _playButton;
     [SerializeField] Button _exitButton;
@@ -39,18 +39,21 @@ public class PauseUI : MonoBehaviour
 
     private void LoadMainMenu()
     {
+        PlayClickSFX();
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void OpenPanel()
+    public override void OpenPanel()
     {
+        base.OpenPanel();
         _animator.SetBool("isOpen", true);
         _overlay.SetActive(true);
         GameManager.Instance.PauseGame();
     }
 
-    public void ClosePanel()
+    public override void ClosePanel()
     {
+        base.ClosePanel();
         _animator.SetBool("isOpen", false);
         _overlay.SetActive(false);
         GameManager.Instance.ResumeGame();

@@ -22,6 +22,7 @@ public class WeaponBase : MonoBehaviour
     private int _currentAmmo;
     private float _bulletDamage;
     private List<BulletBase> _inActiveBullets = new List<BulletBase>();
+    private AudioSource _audioSource;
     private void Awake()
     {
         for (int i = 0; i < _poolSize; i++)
@@ -31,6 +32,7 @@ public class WeaponBase : MonoBehaviour
             bullet.gameObject.SetActive(false);
             _inActiveBullets.Add(bullet);
         }
+        _audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -71,6 +73,7 @@ public class WeaponBase : MonoBehaviour
 
     private void Shoot(bool isFacingRight)
     {
+        _audioSource.PlayOneShot(AudioManager.Instance.playerSFX.ShootSFX);
         _currentAmmo--;
         // Instantiate Bullet
         UpdateAmmoHUD();

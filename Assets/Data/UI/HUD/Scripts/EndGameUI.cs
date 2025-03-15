@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class EndGameUI : MonoBehaviour
+public class EndGameUI : UIBase
 {
     [SerializeField] Button _restartButton;
     [SerializeField] Button _menuButton;
@@ -45,15 +45,18 @@ public class EndGameUI : MonoBehaviour
 
     private void RestartScene()
     {
+        PlayClickSFX();
         SceneManager.LoadScene("GameScene");
     }
     private void LoadMenu()
     {
+        PlayClickSFX();
         GameManager.Instance.ResumeGame();
         SceneManager.LoadScene("MainMenu");
     }
-    public void OpenPanel()
+    public override void OpenPanel()
     {
+        base.OpenPanel();
         _animator.SetBool("isOpen", true);
         _overlay.SetActive(true);
         GameManager.Instance.PauseGame();

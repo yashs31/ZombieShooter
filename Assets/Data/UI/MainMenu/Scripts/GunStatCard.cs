@@ -64,7 +64,14 @@ public class GunStatCard : MonoBehaviour
 
     private void EquipGun()
     {
+        PlayClickSFX();
         GameManager.Instance.SetCurrentWeaponID(_associatedWeapon.ID);
         ShopUI.Instance.Init();
+    }
+
+    private void PlayClickSFX()
+    {
+        AudioManager.Instance.AudioSource.PlayOneShot(AudioManager.Instance.uiSFX.UIClick);
+
     }
 }

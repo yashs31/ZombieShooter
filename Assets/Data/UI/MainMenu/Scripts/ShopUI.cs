@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopUI : MonoBehaviour
+public class ShopUI : UIBase
 {
     [SerializeField] GunStatCard[] _statCard;
     [SerializeField] Button _closeButton;
@@ -42,14 +42,16 @@ public class ShopUI : MonoBehaviour
         }
     }
 
-    public void OpenPanel()
+    public override void OpenPanel()
     {
+        base.OpenPanel();
         _animator.SetBool("isOpen", true);
         _overlay.SetActive(true);
         Init();
     }
-    public void ClosePanel()
+    public override void ClosePanel()
     {
+        base.ClosePanel();
         _animator.SetBool("isOpen", false);
         _overlay.SetActive(false);
     }

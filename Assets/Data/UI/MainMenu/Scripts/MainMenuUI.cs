@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenuUI : MonoBehaviour
+public class MainMenuUI : UIBase
 {
     [SerializeField] Button _playButton;
     [SerializeField] Button _shopButton;
@@ -25,6 +25,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void LoadGameScene()
     {
+        PlayClickSFX();
         SceneManager.LoadScene("GameScene");
     }
 }

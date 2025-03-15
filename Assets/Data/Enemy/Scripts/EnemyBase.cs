@@ -29,10 +29,12 @@ public class EnemyBase : MonoBehaviour
     private bool _isImmune;
     private bool isCoolingDown;
     private float _attackCooldown;
+    private AudioSource _audioSource;
     protected virtual void Awake()
     {
         _enemyLayer = LayerMask.NameToLayer("Enemy");
         RigidBody2D = GetComponent<Rigidbody2D>();
+        _audioSource = GetComponent<AudioSource>();
     }
     protected virtual void Start()
     {
@@ -47,6 +49,8 @@ public class EnemyBase : MonoBehaviour
         //set initial state
         _currentState = _walkState;
         _currentState.EnterState(this);
+        AudioClip[] growlClips = AudioManager.Instance.enemySFX.ZombieGrowl;
+        _audioSource.PlayOneShot(growlClips[Random.Range(0, growlClips.Length)]);
     }
 
     private void OnDisable()
